@@ -1,0 +1,34 @@
+result = []
+plr_inp = []
+num_moves = 0
+win_cond = 0
+import math
+import random
+
+def randomise(result):
+    for i in range(4):
+        result.append(random.randint(1,6))
+    print (result)
+    return result
+
+def check(win_cond = 0):
+    for i in range (4):
+        plr_inp.append(int(input("Podaj wartosc liczby: ")))
+        if (result[i] == plr_inp[i]):
+            win_cond += 1
+        print(win_cond)
+    return(win_cond)
+
+randomise(result)
+while (num_moves < 12):
+    if(check(win_cond) == 4):
+        print("wygrles!")
+        break
+    print(result[0],plr_inp[0])
+    print(result[1],plr_inp[1])
+    print(result[2],plr_inp[2])
+    print(result[3],plr_inp[3])
+    num_moves += 1
+    print(num_moves)
+if (num_moves > 12):
+    print("koniec gry, za duzo ruchow")
