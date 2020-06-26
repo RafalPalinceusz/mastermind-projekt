@@ -10,13 +10,14 @@ import sys
 
 from tkinter import *
 from tkinter import ttk
+#Klasa rodzicielska zasad
 class Gamerule:
     def __init__(self, win_cond, hint, result, plr_inp):
         self.win_cond = 0
         self.hint = []
         self.rand_set = result
         self.plr_inp = plr_inp
-
+#Zasady prawidłowe
 class Fair(Gamerule):
     def __init__(self,win_cond,hint,rand_set,plr_inp):
         super().__init__(win_cond,hint,rand_set,plr_inp)
@@ -42,7 +43,7 @@ class Fair(Gamerule):
         print(self.hint)
         #label = Label(window, text = self.hint)
         pass
-    
+#Oszukiwane zasady gry jako losowe podpowiedzi.    
 class Fake(Gamerule):
     def __init__(self,win_cond,hint,rand_set,plr_inp):
         super().__init__(win_cond,hint,rand_set,plr_inp)
@@ -61,7 +62,7 @@ def randomise(result):
         result.append(random.randint(1,6))
     #print (result)
     return result
-
+#wprowadzanie danych. Tylko liczby od 1 do 6 mogą być przyjęte
 def inputdata(plr_inp):
     for i in range (4):
         while True:
@@ -78,20 +79,24 @@ def inputdata(plr_inp):
                 continue
             else:
                 break
-                
+#gracz sprawdza czy gra oszukiwała                
 def rule_check(tricker):
     if(tricker == 1):
         window.destroy()
         print(result)
         sys.exit("Tere fere")
-        
     
     else:
         window.destroy()
         print(result)
         sys.exit("Zlapales mnie")
-
         
+#plr_input = (player input) dane wprowadzone przez gracza
+#result = prawidłowe liczby jakie należy odgadnąć
+#num_moves = liczba ruchów gracza
+#tricker = bool losujący czy gra ma oszukiwać czy nie
+#win_cond = (winning condition) Zlicza ile dobrych ruchów wykonał gracz.
+#hint = podpowiedzi dla gracza
 result = []
 plr_inp = []
 num_moves = 0
