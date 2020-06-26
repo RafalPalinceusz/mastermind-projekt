@@ -1,7 +1,7 @@
 ﻿
 # Mastermind -Dokumentacja
  by Rafał Palinceusz
- ####https://en.wikipedia.org/wiki/Mastermind_(board_game)
+ #### https://en.wikipedia.org/wiki/Mastermind_(board_game)
 
  ## Założenia projektowe
 Gra bazująca na znanej grze planszowej gdzie role przeciwnika przejmuje komputer. Losuje on układ 4 cyfr a gracz ma za zadanie wydedukować jakie cyfry i w jakiej kolejności. Komputer może albo podpowiadać albo oszukiwać gracza, zależnie od losowania.
