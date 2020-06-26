@@ -18,8 +18,15 @@ Cały program zawarty jest w jednym pliku. Zgodnie z założeniem większość k
 Największe problemy okazały się przy próbie utworzenia trybu graficznego dla gry, jako że kod był napisany wcześniej pod tryb tekstowy, przez co nie był odpowiednio dostosowany.
 
 ## Linki do fragmentów kodu
- [Główna klasa](https://github.com/RafalPalinceusz/mastermind-projekt/blob/81e74937a4980c9ef92a4795e03a9deb55b43ed1/mastermind%20v0.9.py#L14)
+[Główna klasa](https://github.com/RafalPalinceusz/mastermind-projekt/blob/81e74937a4980c9ef92a4795e03a9deb55b43ed1/mastermind%20v0.9.py#L14)
+ 
 [Tkinter window](https://github.com/RafalPalinceusz/mastermind-projekt/blob/81e74937a4980c9ef92a4795e03a9deb55b43ed1/mastermind%20v0.9.py#L117)
+
 [rule check](https://github.com/RafalPalinceusz/mastermind-projekt/blob/81e74937a4980c9ef92a4795e03a9deb55b43ed1/mastermind%20v0.9.py#L83)
 
-[Repozytorium](https://github.com/RafalPalinceusz/mastermind-projekt.git)
+[Fair(Gamerule)](https://github.com/RafalPalinceusz/mastermind-projekt/blob/bd5ce5dbb937ab9baa72d8cc04a688dfdeff8fce/mastermind%20v1.0_MAIN.py#L21)
+
+[Fake(Gamerule)](https://github.com/RafalPalinceusz/mastermind-projekt/blob/bd5ce5dbb937ab9baa72d8cc04a688dfdeff8fce/mastermind%20v1.0_MAIN.py#L47)
+
+[Lambda](https://github.com/RafalPalinceusz/mastermind-projekt/blob/bd5ce5dbb937ab9baa72d8cc04a688dfdeff8fce/mastermind%20v1.0_MAIN.py#L122-L125) 
+# [Repozytorium](https://github.com/RafalPalinceusz/mastermind-projekt.git)
