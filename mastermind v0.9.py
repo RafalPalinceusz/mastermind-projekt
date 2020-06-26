@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[10]:
+# In[9]:
 
 
 import math
 import random
 import sys
 
-#from tkinter import *
-#from tkinter import ttk
-
+from tkinter import *
+from tkinter import ttk
 class Gamerule:
     def __init__(self, win_cond, hint, result, plr_inp):
         self.win_cond = 0
@@ -19,19 +18,20 @@ class Gamerule:
         self.plr_inp = plr_inp
 
 class Fair(Gamerule):
-    win_cond = 0
     def __init__(self,win_cond,hint,rand_set,plr_inp):
         super().__init__(win_cond,hint,rand_set,plr_inp)
     
     def input_check(self):
+        win_cond = 0
         self.hint.clear()
         for i in range(4):
             if (self.rand_set[i] == self.plr_inp[i]):
                 self.hint.append(2)
                 self.win_cond += 1
-        if(self.win_cond == 4):
-            print("proba wyjscia")
+        if(self.win_cond >= 4):
+            window.destroy()
             sys.exit("Gratulacje, wygrales")
+            
 
         for i in range(4):
             for j in range(4):
@@ -59,7 +59,7 @@ class Fake(Gamerule):
 def randomise(result):
     for i in range(4):
         result.append(random.randint(1,6))
-    print (result)
+    #print (result)
     return result
 
 def inputdata(plr_inp):
@@ -81,29 +81,47 @@ def inputdata(plr_inp):
                 
 def rule_check(tricker):
     if(tricker == 1):
-        return("Tere fere")
+        window.destroy()
+        print(result)
+        sys.exit("Tere fere")
+        
+    
     else:
+        window.destroy()
+        print(result)
         sys.exit("Zlapales mnie")
 
+        
 result = []
 plr_inp = []
 num_moves = 0
 randomise(result)
 tricker = random.randint(0,1)
 
-
-
 if tricker == 0:
-    print("Fake rules")
+   # print("Fake rules")
     game_test_core = Fake(0,0,result,plr_inp)
 else:
-    print("Fair rules")
+   # print("Fair rules")
     game_test_core = Fair(0,0,result,plr_inp)
 while (num_moves < 13):
     inputdata(plr_inp)
     
+    #######################
+    #Rysowanie okna i glowna czesc kodu
+    window=Tk()
+    window.title("Mastermind")
+    mainframe=ttk.Frame(window)
+    
+    mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+    ttk.Button(mainframe, text="Oszust",
+           command=lambda: print(rule_check(tricker)) ).grid(column=1, row=0,)
+    ttk.Button(mainframe, text="Sprawdzam",
+               command=lambda:  window.destroy() ).grid(column=2, row=0,)
     game_test_core.input_check()
     game_test_core.print_out()
+    window.mainloop()
+    ##########################
     
     num_moves += 1
     print("wykonana liczba ruchow to ",num_moves)
@@ -112,7 +130,6 @@ if (num_moves >= 13):
 
 
 # In[ ]:
-
 
 
 
