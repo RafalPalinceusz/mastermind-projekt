@@ -28,5 +28,8 @@ Największe problemy okazały się przy próbie utworzenia trybu graficznego dla
 
 [Fake(Gamerule)](https://github.com/RafalPalinceusz/mastermind-projekt/blob/bd5ce5dbb937ab9baa72d8cc04a688dfdeff8fce/mastermind%20v1.0_MAIN.py#L47)
 
+[Virtual Function](https://github.com/RafalPalinceusz/mastermind-projekt/blob/2af2c8077d89b987e406a4f13734bcdf49f5a1aa/mastermind%20v1.0_MAIN.py#L19)
+
 [Lambda](https://github.com/RafalPalinceusz/mastermind-projekt/blob/bd5ce5dbb937ab9baa72d8cc04a688dfdeff8fce/mastermind%20v1.0_MAIN.py#L122-L125) 
+
 # [Repozytorium](https://github.com/RafalPalinceusz/mastermind-projekt.git)
