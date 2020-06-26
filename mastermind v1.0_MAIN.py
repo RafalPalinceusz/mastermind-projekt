@@ -45,7 +45,7 @@ class Fair(Gamerule):
             for j in range(4):
                 if(self.rand_set[i] == self.plr_inp[j] and i != j):
                     self.hint.append(1)
-                    break;
+                    break
 
 #Oszukiwane zasady gry jako losowe podpowiedzi.       
 class Fake(Gamerule):
