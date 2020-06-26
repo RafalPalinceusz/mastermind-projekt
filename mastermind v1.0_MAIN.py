@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-
 import math
 import random
 import sys
+import os
 
 from tkinter import *
 from tkinter import ttk
@@ -20,7 +20,10 @@ class Gamerule:
         pass
     
     def print_out(self):
-        print(self.hint)
+        if (len(self.hint) > 4):
+            print(self.hint[0],self.hint[1],self.hint[2],self.hint[3])
+        else:
+            print(self.hint)
         pass
     
 #Zasady prawidłowe
@@ -29,15 +32,15 @@ class Fair(Gamerule):
         super().__init__(win_cond,hint,rand_set,plr_inp)
     
     def input_check(self):
-        win_cond = 0
+        self.win_cond = 0
         self.hint.clear()
         for i in range(4):
             if (self.rand_set[i] == self.plr_inp[i]):
                 self.hint.append(2)
                 self.win_cond += 1
         if(self.win_cond >= 4):
-            window.destroy()
-            print(self.result)
+            #window.destroy()
+            #print(self.result)
             sys.exit("Gratulacje, wygrales")
             
 
@@ -45,7 +48,7 @@ class Fair(Gamerule):
             for j in range(4):
                 if(self.rand_set[i] == self.plr_inp[j] and i != j):
                     self.hint.append(1)
-                    break
+                    break;
 
 #Oszukiwane zasady gry jako losowe podpowiedzi.       
 class Fake(Gamerule):
@@ -86,49 +89,65 @@ def rule_check(tricker):
         window.destroy()
         print(result)
         sys.exit("Zlapales mnie")
-
+        
+#tworzenie instancji funkcji programu        
+def setup_instance():
+    global result, plr_inp, game_test_core
+    tricker = random.randint(0,1)
+    if tricker == 0:
+        #print("Fake rules")
+        game_test_core = Fake(0,0,result,plr_inp)
+    else:
+        #print("Fair rules")
+        game_test_core = Fair(0,0,result,plr_inp)
+        
+def reset_program(game_test_core):
+    global num_moves, result, plr_inp
+    result = randomise()
+    setup_instance()
+    num_moves = 0
+    window.destroy()
+    print("resetowanie gry")
 #plr_input = (player input) dane wprowadzone przez gracza
 #result = prawidłowe liczby jakie należy odgadnąć
 #num_moves = liczba ruchów gracza
 #tricker = bool losujący czy gra ma oszukiwać czy nie
 #win_cond = (winning condition) Zlicza ile dobrych ruchów wykonał gracz.
-#hint = podpowiedzi dla gracza        
+#hint = podpowiedzi dla gracza    
+
 result = []
 plr_inp = []
 num_moves = 0
 result = randomise()
-tricker = random.randint(0,1)
+#print(result)
+setup_instance()
 
-if tricker == 0:
-   # print("Fake rules")
-    game_test_core = Fake(0,0,result,plr_inp)
-else:
-   # print("Fair rules")
-    game_test_core = Fair(0,0,result,plr_inp)
 while (num_moves < 13):
-    inputdata(plr_inp)
-    
+    inputdata(plr_inp)   
     #######################
     #Rysowanie okna i glowna czesc kodu
-    window=Tk()
+    window = Tk()
     window.title("Mastermind")
     mainframe=ttk.Frame(window)
-    
+
     mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
     ttk.Button(mainframe, text="Oszust",
-           command=lambda: print(rule_check(tricker)) ).grid(column=1, row=0,)
+            command=lambda: print(rule_check(tricker)) ).grid(column=1, row=0,)
     ttk.Button(mainframe, text="Sprawdzam",
-               command=lambda:  window.destroy() ).grid(column=2, row=0,)
-    game_test_core.input_check()
-    game_test_core.print_out()
+            command=lambda:  window.destroy() ).grid(column=2, row=0,)
+    ttk.Button(mainframe, text="Reset",
+            command=lambda: reset_program(game_test_core) ).grid(column=3, row=0,)
+
     window.mainloop()
     ##########################
+    
+    game_test_core.input_check()
+    game_test_core.print_out()
     
     num_moves += 1
     print("wykonana liczba ruchow to ",num_moves)
 if (num_moves >= 13):
     print("koniec gry, za duzo ruchow")
-
 
 
 
