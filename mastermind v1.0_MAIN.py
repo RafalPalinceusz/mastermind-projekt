@@ -1,7 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
-
-# In[9]:
 
 
 import math
@@ -17,6 +15,14 @@ class Gamerule:
         self.hint = []
         self.rand_set = result
         self.plr_inp = plr_inp
+    
+    def input_check(self):
+        pass
+    
+    def print_out(self):
+        print(self.hint)
+        pass
+    
 #Zasady prawidłowe
 class Fair(Gamerule):
     def __init__(self,win_cond,hint,rand_set,plr_inp):
@@ -31,6 +37,7 @@ class Fair(Gamerule):
                 self.win_cond += 1
         if(self.win_cond >= 4):
             window.destroy()
+            print(self.result)
             sys.exit("Gratulacje, wygrales")
             
 
@@ -39,29 +46,17 @@ class Fair(Gamerule):
                 if(self.rand_set[i] == self.plr_inp[j] and i != j):
                     self.hint.append(1)
                     break;
-    def print_out(self):
-        print(self.hint)
-        #label = Label(window, text = self.hint)
-        pass
-#Oszukiwane zasady gry jako losowe podpowiedzi.    
+
+#Oszukiwane zasady gry jako losowe podpowiedzi.       
 class Fake(Gamerule):
     def __init__(self,win_cond,hint,rand_set,plr_inp):
         super().__init__(win_cond,hint,rand_set,plr_inp)
-    
-    def input_check(self):
-        self.hint.clear()
-        for i in range(random.randint(0,3)):
-            self.hint.append(random.randint(1,2))
+        self.hint = [random.randint(1,2) for i in range(random.randint(0,3))]
  
-    def print_out(self):
-        print(self.hint)
-        pass
+
     
-def randomise(result):
-    for i in range(4):
-        result.append(random.randint(1,6))
-    #print (result)
-    return result
+def randomise():
+    return [random.randint(1,6) for i in range(4)]
 #wprowadzanie danych. Tylko liczby od 1 do 6 mogą być przyjęte
 def inputdata(plr_inp):
     for i in range (4):
@@ -79,28 +74,29 @@ def inputdata(plr_inp):
                 continue
             else:
                 break
-#gracz sprawdza czy gra oszukiwała                
+ #gracz sprawdza czy gra oszukiwała                
 def rule_check(tricker):
     if(tricker == 1):
         window.destroy()
         print(result)
         sys.exit("Tere fere")
+        
     
     else:
         window.destroy()
         print(result)
         sys.exit("Zlapales mnie")
-        
+
 #plr_input = (player input) dane wprowadzone przez gracza
 #result = prawidłowe liczby jakie należy odgadnąć
 #num_moves = liczba ruchów gracza
 #tricker = bool losujący czy gra ma oszukiwać czy nie
 #win_cond = (winning condition) Zlicza ile dobrych ruchów wykonał gracz.
-#hint = podpowiedzi dla gracza
+#hint = podpowiedzi dla gracza        
 result = []
 plr_inp = []
 num_moves = 0
-randomise(result)
+result = randomise()
 tricker = random.randint(0,1)
 
 if tricker == 0:
@@ -134,7 +130,6 @@ if (num_moves >= 13):
     print("koniec gry, za duzo ruchow")
 
 
-# In[ ]:
 
 
 
