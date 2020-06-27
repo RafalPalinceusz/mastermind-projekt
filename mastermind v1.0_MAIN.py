@@ -93,6 +93,7 @@ def rule_check(tricker):
 #tworzenie instancji funkcji programu        
 def setup_instance():
     global result, plr_inp, game_test_core
+    global tricker
     tricker = random.randint(0,1)
     if tricker == 0:
         #print("Fake rules")
